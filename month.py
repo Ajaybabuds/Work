@@ -30,6 +30,7 @@ for j in y:
                 if 'Inventory' in slct:
                     res=pd.DataFrame(df.loc[(df['year']==j) & (df['Item']==i)].groupby(['month']).sum()).drop(['Cost'],axis=1)
                     res['End_inv']=res['Aftr_adj_Qty']-res['Sales_Qty']
+                    res['Cum_End_inv']=res['End_inv'].cumsum()
                     st.table(res)
                 else:
                     res=pd.DataFrame(df.loc[(df['year']==j) & (df['Item']==i)].groupby(['month']).sum())
